@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ufrn.imd</groupId>
-	<artifactId>account-service</artifactId>
+	<artifactId>user-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>account-service</name>
-	<description>Demo project for Spring Boot</description>
+	<name>user-service</name>
+	<description>User management microservice</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
