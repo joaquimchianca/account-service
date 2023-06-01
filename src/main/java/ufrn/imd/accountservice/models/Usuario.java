@@ -20,6 +20,7 @@ public class Usuario {
     private LocalDate dataNascimento;
     private String cpf;
     private String rg;
+    private String nomeDaMae;
 
     //info de contato
     @OneToOne
