@@ -11,6 +11,7 @@ import lombok.Data;
 public class Endereco {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String cidade;
     private String bairro;
     private String logradouro;

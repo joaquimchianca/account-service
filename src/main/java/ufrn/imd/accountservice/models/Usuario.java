@@ -1,14 +1,19 @@
 package ufrn.imd.accountservice.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import ufrn.imd.accountservice.enums.StatusUsuario;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "usuario")
 public class Usuario {
@@ -31,5 +36,8 @@ public class Usuario {
     //info financeira
     private String ocupacao;
     private BigDecimal rendaMensal;
+
+    //status para soft delete
+    private StatusUsuario status;
 
 }
