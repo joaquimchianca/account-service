@@ -1,11 +1,15 @@
-package ufrn.imd.accountservice.models;
+package ufrn.imd.userservice.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "endereco")
 public class Endereco {
