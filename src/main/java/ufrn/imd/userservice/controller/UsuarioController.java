@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ufrn.imd.userservice.dto.UsuarioForm;
 import ufrn.imd.userservice.model.Usuario;
 import ufrn.imd.userservice.service.UsuarioService;
 
@@ -43,7 +44,7 @@ public class UsuarioController {
     @Transactional
     public ResponseEntity<Usuario> atualizaInfo(
             @PathVariable Long id,
-            @RequestBody Usuario form
+            @RequestBody UsuarioForm form
     ) {
         Usuario usuario = usuarioService.atualizaInfo(id, form);
         if(usuario == null) {

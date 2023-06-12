@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import ufrn.imd.userservice.enums.StatusUsuario;
+import ufrn.imd.userservice.dto.UsuarioForm;
 import ufrn.imd.userservice.model.Usuario;
 import ufrn.imd.userservice.repository.UsuarioRepository;
 
@@ -27,7 +27,7 @@ public class UsuarioService {
         return usuarioRepository.getReferenceById(id);
     }
 
-    public Usuario atualizaInfo(Long id, Usuario form) {
+    public Usuario atualizaInfo(Long id, UsuarioForm form) {
         Usuario usuario = usuarioRepository.getReferenceById(id);
 
         if(form.getNome() != null) {
@@ -70,10 +70,6 @@ public class UsuarioService {
             usuario.setEmail(form.getEmail());
         }
 
-        if(form.getOcupacao() != null) {
-            usuario.setOcupacao(form.getOcupacao());
-        }
-
         if(form.getRendaMensal() != null) {
             usuario.setRendaMensal(form.getRendaMensal());
         }
@@ -83,7 +79,7 @@ public class UsuarioService {
     }
 
     public void deleta(Long id) {
-        usuarioRepository.deleteById(id);
-
+        Usuario usuario = usuarioRepository.getReferenceById(id);
+        usuario.setDeletado(true);
     }
 }
