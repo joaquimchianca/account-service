@@ -1,0 +1,14 @@
+services:
+   database:
+      image: "postgres:15-alpine"
+      environment:
+         - POSTGRES_USER=postgres
+         - POSTGRES_PASSWORD=postgres
+         - POSTGRES_DB=ms_user
+         - PGDATA=/var/lib/postgresql/data/pgdata
+      ports:
+         - 8000:5432
+   web:
+      build: .
+      ports:
+         - 8080:8080
