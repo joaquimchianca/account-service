@@ -82,4 +82,8 @@ public class UsuarioService {
         Usuario usuario = usuarioRepository.getReferenceById(id);
         usuario.setDeletado(true);
     }
+
+    public Page<Usuario> listaPorEmail(String email, Pageable pageable) {
+        return usuarioRepository.findByEmail(email, pageable);
+    }
 }

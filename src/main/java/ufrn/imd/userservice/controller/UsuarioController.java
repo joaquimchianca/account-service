@@ -28,9 +28,17 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<Usuario>> listaTodos(Pageable pageable) {
-        Page<Usuario> usuarios = usuarioService.listaTodos(pageable);
-        return ResponseEntity.ok(usuarios);
+    public ResponseEntity<Page<Usuario>> listaTodos(
+            Pageable pageable,
+            @RequestParam(required = false) String email
+    ) {
+        if (email != null) {
+            Page<Usuario> usuario = usuarioService.listaPorEmail(email, pageable);
+            return ResponseEntity.ok(usuario);
+        } else {
+            Page<Usuario> usuarios = usuarioService.listaTodos(pageable);
+            return ResponseEntity.ok(usuarios);
+        }
     }
 
     @GetMapping("/{id}")
