@@ -20,6 +20,7 @@ docker compose up
 |-------------|-------------------------|------------------------------------------------------------|
 | POST        | /api/usuarios           | Cadastra um usuário no banco de dados                      |
 | GET         | /api/usuarios           | Lista todos os usuários com cadastro ativo                 |
+| GET         | /api/usuarios/?email    | Lista usuário com determinado email                        |
 | GET         | /api/usuarios/{id}      | Lista um usuário ativo com ID específico                   |
 | PUT         | /api/usuarios/{id}      | Atualiza informações de um usuário ativo                   |
 | DELETE      | /api/usuarios/{id}      | Soft delete de um usuário (altera seu status para inativo) |
