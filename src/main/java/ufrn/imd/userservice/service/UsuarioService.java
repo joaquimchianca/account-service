@@ -1,29 +1,60 @@
 package ufrn.imd.userservice.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.logging.LogLevel;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ufrn.imd.userservice.dto.UsuarioForm;
+import ufrn.imd.userservice.model.Log;
 import ufrn.imd.userservice.model.Usuario;
 import ufrn.imd.userservice.repository.UsuarioRepository;
 
 @Service
 public class UsuarioService {
 
+    private final UsuarioRepository usuarioRepository;
+    private final LogService logger;
+
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    public UsuarioService(LogService logger, UsuarioRepository repository) {
+        this.logger = logger;
+        this.usuarioRepository = repository;
+    }
+
 
     public Usuario cadastra( Usuario usuario ) {
         usuario.setDeletado(false);
+
+        logger.send( Log.builder()
+                        .className(this.getClass().getName())
+                        .method("cadastro")
+                        .context("main")
+                        .level(LogLevel.INFO)
+                        .message("saved new user " + usuario.getId())
+                .build());
         return usuarioRepository.save(usuario);
     }
 
     public Page<Usuario> listaTodos(Pageable pageable) {
+        logger.send( Log.builder()
+                .className(this.getClass().getName())
+                .method("listaTodos")
+                .context("main")
+                .level(LogLevel.INFO)
+                .message("searched all users")
+                .build());
         return usuarioRepository.findAll(pageable);
     }
 
     public Usuario listaUm(Long id) {
+        logger.send( Log.builder()
+                .className(this.getClass().getName())
+                .method("listaUm")
+                .context("main")
+                .level(LogLevel.INFO)
+                .message("searched user " + id)
+                .build());
         return usuarioRepository.getReferenceById(id);
     }
 
@@ -74,6 +105,14 @@ public class UsuarioService {
             usuario.setRendaMensal(form.getRendaMensal());
         }
 
+        logger.send( Log.builder()
+                .className(this.getClass().getName())
+                .method("atualiza")
+                .context("main")
+                .level(LogLevel.INFO)
+                .message("saved new changes in user " + usuario.getId())
+                .build());
+
         return usuario;
 
     }
@@ -81,9 +120,24 @@ public class UsuarioService {
     public void deleta(Long id) {
         Usuario usuario = usuarioRepository.getReferenceById(id);
         usuario.setDeletado(true);
+
+        logger.send( Log.builder()
+                .className(this.getClass().getName())
+                .method("deleta")
+                .context("main")
+                .level(LogLevel.INFO)
+                .message("deleted user " + id)
+                .build());
     }
 
     public Page<Usuario> listaPorEmail(String email, Pageable pageable) {
+        logger.send( Log.builder()
+                .className(this.getClass().getName())
+                .method("listaPorEmail")
+                .context("main")
+                .level(LogLevel.INFO)
+                .message("searched user by email " + email)
+                .build());
         return usuarioRepository.findByEmail(email, pageable);
     }
 }
