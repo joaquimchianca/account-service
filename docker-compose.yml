@@ -22,8 +22,8 @@ services:
          - POSTGRES_PASSWORD=postgres
          - POSTGRES_DB=ms_user
 
-   rabbitmq:
-      image: rabbitmq:management
-      ports:
-         - "5672:5672"
-         - "15672:15672"
+#   rabbitmq:
+#      image: rabbitmq:management
+#      ports:
+#         - "5672:5672"
+#         - "15672:15672"
